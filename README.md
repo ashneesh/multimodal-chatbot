@@ -22,9 +22,10 @@ The implementation demonstrates the complete AI pipeline: data acquisition, prep
 ## 🚀 Live Demo
 
 
-**🔗 [Try the Chatbot on Hugging Face Spaces](https://huggingface.co/spaces/YOUR_USERNAME/YOUR_SPACE_NAME)**
+https://github.com/user-attachments/assets/e1eec680-3fd4-410a-a00e-4b4a92333b96
 
-*Note: Replace with your actual HF Spaces URL after deployment*
+
+**🔗 [Try the Chatbot on Hugging Face Spaces](https://huggingface.co/spaces/ashneeshkaur/multimodal-chatbot)**
 
 ## 📦 Model & Resources
 
