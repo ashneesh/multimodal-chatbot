@@ -1,4 +1,3 @@
-
 import streamlit as st
 import torch
 import torch.nn as nn
@@ -10,6 +9,8 @@ import whisper
 import numpy as np
 import io
 import os
+import urllib.request
+from huggingface_hub import hf_hub_download
 
 # --- Model Definition (Must match training) ---
 class MultimodalClassifier(nn.Module):
@@ -40,11 +41,13 @@ def load_resources():
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
     model = MultimodalClassifier(num_classes=10)
     
-    # Load Weights if available
-    if os.path.exists('multimodal_model_improved.pth'):
-        model.load_state_dict(torch.load('multimodal_model_improved.pth', map_location=device))
+    MODEL_REPO = "ashneeshkaur/multimodal-chatbot-repo"
+    MODEL_PATH = hf_hub_download(repo_id=MODEL_REPO, filename="multimodal_model_improved.pth")   
+     
+    if os.path.exists(MODEL_PATH):
+        model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
     else:
-        st.warning("Model weights not found! Using random weights.")
+        st.warning("Model weights not found! Using random weights. Upload the model file to your HF Space.")
         
     model.to(device)
     model.eval()
