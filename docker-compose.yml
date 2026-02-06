@@ -1,0 +1,22 @@
+services:
+  streamlit-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: multimodal-chatbot-app
+    ports:
+      - "8501:8501"
+    volumes:
+      # Mount model file if it exists locally
+      - ./multimodal_model_improved.pth:/app/multimodal_model_improved.pth:ro
+      # Optional: Mount data directory if needed
+      - ./data:/app/data:ro
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
